@@ -15,9 +15,8 @@ class PendaftaranReguler extends Pendaftaran {
     }
 
     // Override abstract method dari induk
-    public function hitungTotalBiaya() {
-    // Tarif standar murni tanpa biaya tambahan
-    return $this->biayaPendaftaranDasar;
+    public function tampilkanInfoJalur() {
+    return "Jalur: Reguler | Prodi: " . $this->pilihanProdi . " | Kampus: " . $this->lokasiKampus;
     }
 
     // Metode Query Spesifik Jalur Reguler

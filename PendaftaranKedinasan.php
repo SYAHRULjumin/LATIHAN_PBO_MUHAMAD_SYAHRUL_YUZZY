@@ -15,10 +15,9 @@ class PendaftaranKedinasan extends Pendaftaran {
     }
 
     // Override abstract method dari induk
-    public function hitungTotalBiaya() {
-    // Dikenakan surcharge/biaya tambahan khusus sebesar 25%
-    return $this->biayaPendaftaranDasar * 1.25;
-    }
+    public function tampilkanInfoJalur() {
+    return "Jalur: Kedinasan | SK: " . $this->skIkatanDinas . " | Sponsor: " . $this->instansiSponsor;
+}
 
     // Metode Query Spesifik Jalur Kedinasan
     public static function getDaftarKedinasan($db) {
