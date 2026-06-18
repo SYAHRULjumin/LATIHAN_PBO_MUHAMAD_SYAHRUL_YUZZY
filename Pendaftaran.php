@@ -1,11 +1,11 @@
 <?php
 // ==========================================
-// 1. KONFIGURASI KONEKSI DATABASE (PDO)
+// 1. KONFIGURASI KONEKSI DATABASE (PBO)
 // ==========================================
 $host = "localhost";
 $username = "root";
-$password = ""; // Kosongkan kalau pake bawaan Laragon
-$database = "DB_SIMULASI_PBO_KELAS_NamaLengkap"; // Ganti pake nama database lu!
+$password = "";
+$database = "db_simulasi_pbo_ti1d_muhamad_syahrul_yuzzy";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
@@ -36,7 +36,6 @@ abstract class Pendaftaran {
         $this->biayaPendaftaranDasar = $biayaDasar;
     }
 
-    // CUKUP SATU METHOD ABSTRAK (Sesuai sabda dosen lu)
     abstract public function hitungTotalBiaya();
 }
 ?>
