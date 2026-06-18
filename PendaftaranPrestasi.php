@@ -16,7 +16,8 @@ class PendaftaranPrestasi extends Pendaftaran {
 
     // Override abstract method dari induk
     public function hitungTotalBiaya() {
-        return $this->biayaPendaftaranDasar * 0.5; // Prestasi dapet diskon 50%
+    // Mendapatkan potongan/insentif apresiasi sebesar Rp50.000
+    return $this->biayaPendaftaranDasar - 50000;
     }
 
     // Metode Query Spesifik Jalur Prestasi

@@ -16,7 +16,8 @@ class PendaftaranKedinasan extends Pendaftaran {
 
     // Override abstract method dari induk
     public function hitungTotalBiaya() {
-        return 0; // Kedinasan gratis ditanggung instansi
+    // Dikenakan surcharge/biaya tambahan khusus sebesar 25%
+    return $this->biayaPendaftaranDasar * 1.25;
     }
 
     // Metode Query Spesifik Jalur Kedinasan
