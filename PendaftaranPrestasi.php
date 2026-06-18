@@ -1,26 +1,27 @@
 <?php
 // PendaftaranPrestasi.php
-require_once 'Pendaftaran.php'; // Panggil induk & pdo
+require_once 'Pendaftaran.php';
 
 class PendaftaranPrestasi extends Pendaftaran {
-    // Properti tambahan sesuai instruksi
     private $jenisPrestasi;
     private $tingkatPrestasi;
 
-    // Constructor manggil parent
     public function __construct($id, $nama, $sekolah, $nilai, $biayaDasar, $jenis, $tingkat) {
         parent::__construct($id, $nama, $sekolah, $nilai, $biayaDasar);
         $this->jenisPrestasi = $jenis;
         $this->tingkatPrestasi = $tingkat;
     }
 
-    // Override abstract method dari induk
     public function hitungTotalBiaya() {
-    // Mendapatkan potongan/insentif apresiasi sebesar Rp50.000
-    return $this->biayaPendaftaranDasar - 50000;
+        // Potongan Rp50.000 sesuai Tahap 5
+        return $this->biayaPendaftaranDasar - 50000;
     }
 
-    // Metode Query Spesifik Jalur Prestasi
+    // PASTIKAN BAGIAN INI ADA DAN KAGAK TYPO, ZUL!
+    public function tampilkanInfoJalur() {
+        return "Jalur: Prestasi | Jenis: " . $this->jenisPrestasi . " | Tingkat: " . $this->tingkatPrestasi;
+    }
+
     public static function getDaftarPrestasi($db) {
         $sql = "SELECT * FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Prestasi'";
         $stmt = $db->prepare($sql);

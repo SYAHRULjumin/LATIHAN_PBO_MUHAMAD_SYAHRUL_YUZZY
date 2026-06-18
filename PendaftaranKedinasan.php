@@ -1,25 +1,27 @@
 <?php
 // PendaftaranKedinasan.php
-require_once 'Pendaftaran.php'; // Panggil induk & pdo
+require_once 'Pendaftaran.php';
 
 class PendaftaranKedinasan extends Pendaftaran {
-    // Properti tambahan sesuai instruksi
     private $skIkatanDinas;
     private $instansiSponsor;
 
-    // Constructor manggil parent
     public function __construct($id, $nama, $sekolah, $nilai, $biayaDasar, $sk, $sponsor) {
         parent::__construct($id, $nama, $sekolah, $nilai, $biayaDasar);
         $this->skIkatanDinas = $sk;
         $this->instansiSponsor = $sponsor;
     }
 
-    // Override abstract method dari induk
-    public function tampilkanInfoJalur() {
-    return "Jalur: Kedinasan | SK: " . $this->skIkatanDinas . " | Sponsor: " . $this->instansiSponsor;
-}
+    // INI YANG WAJIB ADA BIAR KAGAK ERROR!
+    public function hitungTotalBiaya() {
+        // Dikenakan surcharge/biaya tambahan khusus sebesar 25% sesuai Tahap 5
+        return $this->biayaPendaftaranDasar * 1.25;
+    }
 
-    // Metode Query Spesifik Jalur Kedinasan
+    public function tampilkanInfoJalur() {
+        return "Jalur: Kedinasan | SK: " . $this->skIkatanDinas . " | Sponsor: " . $this->instansiSponsor;
+    }
+
     public static function getDaftarKedinasan($db) {
         $sql = "SELECT * FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Kedinasan'";
         $stmt = $db->prepare($sql);

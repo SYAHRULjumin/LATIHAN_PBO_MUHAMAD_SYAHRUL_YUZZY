@@ -1,25 +1,27 @@
 <?php
 // PendaftaranReguler.php
-require_once 'Pendaftaran.php'; // Panggil induk & pbo
+require_once 'Pendaftaran.php';
 
 class PendaftaranReguler extends Pendaftaran {
-    // Properti tambahan sesuai instruksi
     private $pilihanProdi;
     private $lokasiKampus;
 
-    // Constructor manggil parent
     public function __construct($id, $nama, $sekolah, $nilai, $biayaDasar, $prodi, $kampus) {
         parent::__construct($id, $nama, $sekolah, $nilai, $biayaDasar);
         $this->pilihanProdi = $prodi;
         $this->lokasiKampus = $kampus;
     }
 
-    // Override abstract method dari induk
-    public function tampilkanInfoJalur() {
-    return "Jalur: Reguler | Prodi: " . $this->pilihanProdi . " | Kampus: " . $this->lokasiKampus;
+    // PASTIIN BAGIAN INI ADA DAN TIDAK TYPO!
+    public function hitungTotalBiaya() {
+        // Tarif standar murni tanpa biaya tambahan sesuai Tahap 5
+        return $this->biayaPendaftaranDasar;
     }
 
-    // Metode Query Spesifik Jalur Reguler
+    public function tampilkanInfoJalur() {
+        return "Jalur: Reguler | Prodi: " . $this->pilihanProdi . " | Kampus: " . $this->lokasiKampus;
+    }
+
     public static function getDaftarReguler($db) {
         $sql = "SELECT * FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Reguler'";
         $stmt = $db->prepare($sql);
